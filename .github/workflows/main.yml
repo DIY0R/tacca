@@ -3,7 +3,7 @@ env:
   DATABASE: ${{ secrets.DATABASE }}
   HOST: ${{ secrets.HOST }}
   PASSWORD: ${{ secrets.PASSWORD }}
-  PORT: ${{ secrets.PORT }}
+  PORT_HOST: ${{ secrets.PORT_HOST }}
   USER: ${{ secrets.USER }}
 
 on:

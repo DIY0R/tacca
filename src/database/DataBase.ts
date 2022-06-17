@@ -25,7 +25,7 @@ class PostgresqlConfigLocal {
 class PostgresqlConfigDeploy {
   private readonly type = 'postgres'
   private readonly host = process.env.HOST
-  private readonly port = process.env.PORT
+  private readonly port = process.env.PORT_HOST
   private readonly username = process.env.USER
   private readonly password = process.env.PASSWORD
   private readonly database = process.env.DATABASE
