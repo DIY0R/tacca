@@ -8,7 +8,7 @@ export interface PostgresqlConfigInterface {
   synchronize: boolean
   logging: boolean
 }
-class PostgresqlConfig {
+class PostgresqlConfigLocal {
   private readonly type = 'postgres'
   private readonly host = 'localhost'
   private readonly port = 5432
@@ -22,10 +22,24 @@ class PostgresqlConfig {
   }
 }
 
+class PostgresqlConfigDeploy {
+  private readonly type = 'postgres'
+  private readonly host = process.env.HOST
+  private readonly port = process.env.PORT
+  private readonly username = process.env.USER
+  private readonly password = process.env.PASSWORD
+  private readonly database = process.env.DATABASE
+  private readonly synchronize = true
+  private readonly logging = true
+  get getConfig() {
+    return this
+  }
+}
+
 class Database {
-  constructor(private readonly database: PostgresqlConfig) {}
+  constructor(private readonly database: PostgresqlConfigDeploy) {}
   public get getDataBaseConfig(): object {
     return this.database.getConfig
   }
 }
-export const DatabaseConfig = new Database(new PostgresqlConfig())
+export const DatabaseConfig = new Database(new PostgresqlConfigDeploy())
