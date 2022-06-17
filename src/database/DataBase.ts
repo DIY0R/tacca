@@ -8,19 +8,7 @@ export interface PostgresqlConfigInterface {
   synchronize: boolean
   logging: boolean
 }
-class PostgresqlConfigLocal {
-  private readonly type = 'postgres'
-  private readonly host = 'localhost'
-  private readonly port = 5432
-  private readonly username = 'postgres'
-  private readonly password = 'set2567catbet'
-  private readonly database = 'tacca'
-  private readonly synchronize = true
-  private readonly logging = true
-  get getConfig() {
-    return this
-  }
-}
+
 
 class PostgresqlConfigDeploy {
   private readonly type = 'postgres'
