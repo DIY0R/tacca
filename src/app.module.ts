@@ -21,13 +21,13 @@ import { PostsModule } from './posts/posts.module';
       entities: [Session],
       autoLoadEntities: true,
       timezone: '+05:00',
-      // ssl: true,
-      // extra: {
-      //   ssl: {
-      //     rejectUnauthorized: false,
-      //   },
-      // },
-      // logging: false,
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
+      logging: false,
     }),
     ScheduleModule.forRoot(),
     AuthModule,
