@@ -71,7 +71,7 @@ export class AuthService {
     })
     const users: any = await this.usersRepository
       .createQueryBuilder('user')
-      .where('user.id=:id', { id: candidate.id })
+      .where('user.id=:id', { id: candidate?.id ?? 0 })
       .select('user.id', 'id')
       .addSelect('user.password')
       .getMany()
