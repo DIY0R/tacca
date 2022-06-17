@@ -15,6 +15,42 @@ export class AuthService {
     @InjectRepository(Users) private usersRepository: Repository<Users>
   ) {}
 
+  logout(session) {
+    return new Promise((res) => {
+      session.destroy(() => {
+        res(true)
+      })
+    })
+  }
+
+  async login(loginDto: LoginDtoValid, req) {
+    if (loginDto?.messages) return req.flash('messages', loginDto?.messages)
+
+    const candidate = await this.getUser(loginDto)
+
+    const passwordEquals = await bcrypt.compare(
+      loginDto.password,
+      candidate.password || ''
+    )
+    if (!passwordEquals)
+      return req.flash('messages', ['вы не прошли авторизацию'])
+
+    return candidate
+  }
+
+  private async getUser(loginDto: LoginDtoValid) {
+    const candidate = await this.usersRepository.findOne({
+      where: { email: loginDto.email },
+    })
+    const user: any = await this.usersRepository
+      .createQueryBuilder('user')
+      .where('user.id=:id', { id: candidate?.id })
+      .select('user.id', 'id')
+      .addSelect('user.password')
+      .getMany()
+    return { ...candidate, password: user[0]?.password }
+  }
+
   async registration(registrationDto: RegistrationDtoValid, session, req, res) {
     if (registrationDto?.messages) {
       req.flash('info', registrationDto?.messages)
@@ -28,7 +64,7 @@ export class AuthService {
 
     if (candidate) {
       req.flash('info', 'такой пользователь уже авторизован')
-      return  res.redirect('/auth/registration')
+      return res.redirect('/auth/registration')
     }
     const hashPassword = await bcrypt.hash(password, 5)
     const user = await this.usersRepository
@@ -51,51 +87,6 @@ export class AuthService {
         res.redirect('/')
       })
     })
-  }
-
-  logout(session) {
-    return new Promise((res) => {
-      session.destroy(() => {
-        res(true)
-      })
-    })
-  }
-
-  async login(loginDto: LoginDtoValid, session, req, res) {
-    if (loginDto?.messages) {
-      req.flash('messages', loginDto?.messages)
-      return res.redirect('/auth/login')
-    }
-    const candidate = await this.usersRepository.findOne({
-      where: { email: loginDto.email },
-    })
-    if(candidate){
-      req.flash('messages', ['вы не прошли авторизацию'])
-     return  res.redirect('/auth/login')
-    }
-    const users: any = await this.usersRepository
-      .createQueryBuilder('user')
-      .where('user.id=:id', { id: candidate?.id ?? 0 })
-      .select('user.id', 'id')
-      .addSelect('user.password')
-      .getMany()
-    const passwordEquals = await bcrypt.compare(
-      loginDto.password,
-      users[0].password || ''
-    )
-
-    if (passwordEquals) {
-      return new Promise((resolve) => {
-        session.isAuth = true
-        session.user = candidate
-        session.save(() => {
-          res.redirect('/')
-          resolve(true)
-        })
-      })
-    }
-    req.flash('messages', ['вы не прошли авторизацию'])
-    res.redirect('/auth/login')
   }
 
   @Cron('0 0 */1 * * *')

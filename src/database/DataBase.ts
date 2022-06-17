@@ -13,7 +13,7 @@ class PostgresqlConfigLocal {
   private readonly host = 'localhost'
   private readonly port = 5432
   private readonly username = 'postgres'
-  private readonly password = '********'
+  private readonly password = 'set2567catbet'
   private readonly database = 'tacca'
   private readonly synchronize = true
   private readonly logging = true
