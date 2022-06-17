@@ -11,6 +11,7 @@ import { ValidationPipeGlobal } from './pipes/validations.pipe'
 import { HttpExceptionGlobal } from './exceptions/HttpExceptionGlobal'
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  console.log('---------------',process.env.HOST)
   app.useStaticAssets(join(__dirname, '..', 'public')) 
   app.setBaseViewsDir(join(__dirname, '..', 'views'))  
   app.use(cookieParser('heee'))
@@ -19,7 +20,6 @@ async function bootstrap() {
       secret: 'my-secret',
       resave: true,
       saveUninitialized: false,
-      
       cookie: {
         maxAge: 3500000,
       },
