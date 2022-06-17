@@ -1,4 +1,10 @@
 name: tacca
+env:
+  DATABASE: ${{ secrets.DATABASE }}
+  HOST: ${{ secrets.HOST }}
+  PASSWORD: ${{ secrets.PASSWORD }}
+  PORT: ${{ secrets.PORT }}
+  USER: ${{ secrets.USER }}
 
 on:
   push:
@@ -20,7 +26,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install, test
+      - name: install and run
         run: |
           npm install --legacy-peer-deps
           npm run build
