@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>head/head}}
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            {{>header/header}}
+        </header>
+        <div class="app">
+            {{#if login}}
+            {{{body}}}
+            {{else}}
+            <div class="row p-5">
+                <div class="col-8">
+                    <div class="content-article"> {{>topBar/navigatorTop}} </div>
+                    {{{body}}}
+                </div>
+                <div class="col-3 box-quote sider">
+                    <div class="box-quote">{{quote}}</div>
+                </div>
+
+            </div>
+        </div>
+        {{/if}}
+        {{#unless login}}{{>footer/footer}}{{/unless}}
+    </div>
+{{#each scripts}}
+<script src="/scripts/{{this}}.js"></script>
+{{/each}}
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-dark bg-dark navbar-top">
+  <a class="navbar-brand px-5" href="/">Tacca</a>
+
+  <span class="d-flex mx-5" style="color: white;">
+
+     <div class="dropdown">
+      <span class="dropbtn"><i class="bi bi-person-circle icon-user"></i>{{user.name}}</span>
+
+      <div class="dropdown-content">
+    
+        {{#if isAuth}}
+         <a href="/posts/myPosts">Посты</a>
+          
+         <hr>
+         <a href="/auth/logout">Выйти</a>
+       
+        {{else }} 
+        <a href="/auth/login">Войти</a>
+        <a href="/auth/registration">Регистрация</a>
+        {{/if}}
+
+
+
+      </div>
+    </div>
+  </span>
+
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+  </div>
+</nav>

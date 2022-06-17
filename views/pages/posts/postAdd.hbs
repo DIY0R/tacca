@@ -1,0 +1,29 @@
+<div class="container myPosts">
+{{#each postError}}
+ <li>{{this}}</li>
+{{/each}}   
+<br>
+<form method="POST" action="/posts/addPost" enctype="multipart/form-data" > 
+
+   <div class="mb-3">
+      <input type="text" name="title" placeholder="Название темы" class="form-control" 
+        
+    </div>
+    <div class="mb-3 tegs">
+      <span class="tegs-col"></span>
+      <input  type="button" class="add_teg_btn" value="+">
+    </div>
+    <div class="mb-3 img">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+        <input name="image"  type="file" class="form-control" id="inputGroupFile01">
+      </div>
+    </div>
+    <div class="text">
+      <textarea name="text" class="text"></textarea>
+    </div> <br>
+    <button type="submit">save</button>
+  
+  </form>
+
+</div>

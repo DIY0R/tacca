@@ -1,0 +1,45 @@
+  <section class="sign-in">
+      <div class="container">
+          <div class="signin-content">
+              <div class="signin-image">
+                  <figure><img src="../images/signin-image.jpg" alt="sing up image"></figure>
+                  <a href="/auth/registration" class="signup-image-link">Создать акаунт</a>
+              </div>
+
+              <div class="signin-form">
+                  <h2 class="form-title">Вход</h2>
+                  <ul class="people_list">
+                      {{#each messages}}
+                      <li>{{this}}</li>
+                      {{/each}}
+                  </ul>
+                  <form method="POST" action="/auth/login" class="register-form" id="login-form">
+                      <div class="form-group valids">
+                          <label class="error-label" for="your_email"></label>
+                          <input max="10" min="4" type="email" name="email" id="email" placeholder="Твой email" />
+                      </div>
+                      <div class="form-group valids">
+                          <label class="error-label" for="password"></label>
+                          <input max="10" min="6" type="password" name="password" id="password" placeholder="Пароль" />
+                      </div>
+                      <div class="form-group">
+                          <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                          <label for="remember-me" class="label-agree-term"><span><span></span></span>Запомнить
+                              меня?</label>
+                      </div>
+                      <div class="form-group form-button">
+                          <input type="submit" name="signin" id="signin" class="form-submit" value="Войти" />
+                      </div>
+                  </form>
+                  <div class="social-login">
+                      <span class="social-label"> Войти с помощью</span>
+                      <ul class="socials">
+                          <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook bi bi-facebook"></i></a></li>
+                          <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter bi bi-twitter"></i></a></li>
+                          <li><a href="#"><i class="display-flex-center zmdi zmdi-google bi bi-google"></i></a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>

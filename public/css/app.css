@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Macondo&family=Moon+Dance&family=Roboto:wght@100;300&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Macondo&family=Moon+Dance&family=Roboto:wght@100;300&display=swap');
+
+.navbar-brand {
+    font-family: cursive;
+    font-size: 30px;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+   
+}
+::-webkit-scrollbar {
+    width: 0;
+  }
+html,
+body {
+    background-color: #F0F0F0;
+    height: 100%;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: #483750 !important;
+}
+
+.row {
+    --bs-gutter-x: 0 !important;
+}
+
+.box-quote {
+    font-family: 'Koulen', cursive;
+    font-size: 20px;
+}
+
+
+.app {
+    padding-bottom: 90px;
+    background: #F0F0F0;
+}
+
+.content-article {
+    padding: 15px;
+    background-color: white;
+    margin: 1%;
+
+}
+
+.sider {
+    padding: 10px;
+    margin: 1%;
+    background-color: white;
+}
+
+
+.footer {
+    background-color: #483750 !important;
+    padding: 10px;
+}
+
+
+
+.content-article {
+    margin-top: 20px;
+    padding-left: 29px;
+    padding-right: 29px;
+}
+
+.user>a {
+
+    font-weight: bold;
+    text-decoration: none;
+    color: #414B50;
+}
+
+.date-post {
+    margin-left: 10px;
+    color: #777777;
+}
+
+.user-logo {
+    width: 3%;
+}
+
+.subject {
+    margin-top: 10px;
+}
+
+.subject>a {
+    text-decoration: none;
+    color: #487284;
+}
+
+.tegs {
+    font-size: 15px;
+}
+
+.tegs>a {
+    text-decoration: none;
+    color: #5E6973;
+}
+
+.tegs>a:hover {
+
+    color: #5E6973;
+}
+
+
+.photo-post {
+    margin-top: 13px;
+}
+
+.photo-post>img {
+    width: 100%;
+}
+
+
+.short-information{
+    margin-top: 24px;
+    font-size: 1rem;
+}
+
+.link-post{
+    margin-top: 50px;
+    
+    border: 2px solid #414B50;
+}
+
+
+.link-post:hover{
+    background-color: #414B50;
+    box-shadow: 0px 0px 10px 1px #414B50;
+    color: white;
+}
+.actions-icons{
+    margin-top: 20px;
+}
+
+.icon-post{
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.icon-post:hover{
+   cursor: pointer;
+   color: rgb(105, 219, 105);
+}
+
+
+.tm_name-bar{
+    -webkit-font-smoothing: antialiased;
+    color: #333;
+    font-size: 1.24375rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    margin: 0;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+}
+
+.tm-page{
+    box-sizing: border-box;
+    color: #6f7577;
+    display: inline-block;
+    margin-right: 24px;
+    position: relative;
+    text-transform: uppercase;
+}
+.link-page{
+    -webkit-font-smoothing: antialiased;
+    font-family: Fira Sans,sans-serif;
+    color: inherit;
+    display: flex;
+    font-weight: bold;
+    font-size: .875rem;
+    letter-spacing: .05rem;
+    line-height: 1rem;
+    padding: 0;
+    margin: 2px 0;
+    text-decoration: none;
+    align-items: center;
+    height: 44px;
+}
+
+
+.icon-user{
+    font-size: 28px;
+}
+/* Style The Dropdown Button */
+.dropbtn {
+
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  
+  margin-right: 50px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  margin-right: 50px;
+
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+.form-login{
+    
+}
