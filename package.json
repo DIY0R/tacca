@@ -2,6 +2,10 @@
   "name": "takka",
   "private": true,
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm":"v6.x"
+  },
   "description": "Nest TypeScript starter repository",
   "license": "MIT",
   "scripts": {
