@@ -69,6 +69,10 @@ export class AuthService {
     const candidate = await this.usersRepository.findOne({
       where: { email: loginDto.email },
     })
+    if(candidate){
+      req.flash('messages', ['вы не прошли авторизацию'])
+     return  res.redirect('/auth/login')
+    }
     const users: any = await this.usersRepository
       .createQueryBuilder('user')
       .where('user.id=:id', { id: candidate?.id ?? 0 })
@@ -80,7 +84,7 @@ export class AuthService {
       users[0].password || ''
     )
 
-    if (candidate && passwordEquals) {
+    if (passwordEquals) {
       return new Promise((resolve) => {
         session.isAuth = true
         session.user = candidate
