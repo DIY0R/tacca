@@ -19,7 +19,7 @@ async function bootstrap() {
       secret: 'my-secret',
       resave: true,
       saveUninitialized: false,
- 
+      
       cookie: {
         maxAge: 3500000,
       },
