@@ -1,5 +1,5 @@
-import { ISession } from 'connect-typeorm'
-import { Users } from 'src/auth/model/user.model'
+import { ISession } from 'connect-typeorm';
+import { Users } from 'src/auth/model/user.model';
 import {
   Column,
   CreateDateColumn,
@@ -7,43 +7,43 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm'
+} from 'typeorm';
 
 @Entity()
 export default class Post {
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
   @Column({
     length: 50,
     nullable: false,
   })
-  title: string
+  title: string;
 
   @Column({
     nullable: false,
     length: 50,
   })
-  tegs: string
+  tegs: string;
   @Column({ nullable: false, length: 50 })
-  imgName: string
+  imgName: string;
 
   @Column('text')
-  text: string
+  text: string;
 
   @ManyToOne(() => Users, (user) => user.posts, {
     onDelete: 'CASCADE',
   })
-  user: Users
+  user: Users;
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  public created_at: Date
+  public created_at: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
-  public updated_at: Date
+  public updated_at: Date;
 }

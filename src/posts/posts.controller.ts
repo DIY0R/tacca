@@ -11,20 +11,20 @@ import {
   UploadedFile,
   UseGuards,
   UseInterceptors,
-} from '@nestjs/common'
-import { FileInterceptor } from '@nestjs/platform-express'
-import { diskStorage } from 'multer'
-import {  join } from 'path'
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { join } from 'path';
 
-import { MyRequest, MyResponse } from 'src/types/response'
-import { imgpathDtoValid } from './dto/imgpath.dto'
-import {  PostDtoValid } from './dto/post.dto'
-import { AuthGuard } from './guards/auth.guard'
+import { MyRequest, MyResponse } from 'src/types/response';
+import { imgpathDtoValid } from './dto/imgpath.dto';
+import { PostDtoValid } from './dto/post.dto';
+import { AuthGuard } from './guards/auth.guard';
 
-import { editFileName } from './middlewares/editFileName'
-import { imageFileFilter } from './middlewares/imageFileFilter'
-import { PostsService } from './posts.service'
-import  { createReadStream } from 'fs'
+import { editFileName } from './middlewares/editFileName';
+import { imageFileFilter } from './middlewares/imageFileFilter';
+import { PostsService } from './posts.service';
+import { createReadStream } from 'fs';
 
 @Controller('posts')
 @UseGuards(AuthGuard)
@@ -34,9 +34,9 @@ export class PostsController {
   @Get('/myPosts')
   @Render('pages/posts/postPage.hbs')
   async myPosts(@Res() res: MyResponse) {
-    const user: any = await this.postsService.getPosts(res.locals.user.id)
-    console.log(user.posts)
-    return { login: true, posts: user.posts, css: ['postPage'] }
+    const user: any = await this.postsService.getPosts(res.locals.user.id);
+    console.log(user.posts);
+    return { login: true, posts: user.posts, css: ['postPage'] };
   }
 
   @Get('/addPost')
@@ -47,7 +47,7 @@ export class PostsController {
       css: ['myPosts'],
       postError: req.flash('postError'),
       scripts: ['postEdit'],
-    }
+    };
   }
 
   @Post('/addPost')
@@ -67,21 +67,21 @@ export class PostsController {
     @Req() req: MyRequest,
     @Res() res: MyResponse
   ) {
-    console.log(res.locals.user)
+    console.log(res.locals.user);
     const post = this.postsService.addPost(
       postDto,
       img,
       req,
       res.locals.user.id
-    )
-    return { name: 'hello' }
+    );
+    return { name: 'hello' };
   }
 
   @Get('/postImages/:imgpath')
   seeUploadedFile(@Param('imgpath') image: imgpathDtoValid, @Res() res) {
     const file = createReadStream(
       join(process.cwd(), 'public/images/postsImages/' + image)
-    )
-    file.pipe(res)
+    );
+    file.pipe(res);
   }
 }
