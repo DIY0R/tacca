@@ -88,16 +88,5 @@ export class AuthService {
       });
     });
   }
-
-  @Cron('0 0 */1 * * *')
-  sessionClean() {
-    this.sessionRepository
-      .createQueryBuilder()
-      .delete()
-      .where('updated_at <= :date', {
-        date: new Date((new Date() as number | any) - 10 * 350000),
-      })
-      .execute();
-  }
 }
 //350000
