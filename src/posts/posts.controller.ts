@@ -35,8 +35,13 @@ export class PostsController {
   @Render('pages/posts/postPage.hbs')
   async myPosts(@Res() res: MyResponse) {
     const user: any = await this.postsService.getPosts(res.locals.user.id);
-    console.log(user.posts);
-    return { login: true, posts: user.posts, css: ['postPage'] };
+    console.log(user.name);
+    return {
+      login: true,
+      posts: user.posts,
+      css: ['postPage'],
+      name: user.name,
+    };
   }
 
   @Get('/addPost')

@@ -15,6 +15,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.use(cookieParser('heee'));
+
   app.use(
     session({
       secret: 'my-secret',
@@ -25,6 +26,7 @@ async function bootstrap() {
       },
     })
   );
+
   app.use(flash());
   app.use(AuthCheckMiddleware.check);
   app.engine(
