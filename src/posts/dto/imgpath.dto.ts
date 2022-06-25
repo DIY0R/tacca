@@ -1,10 +1,10 @@
-import { IsString, isString } from 'class-validator'
+import { IsString, isString } from 'class-validator';
 
 class imgpathDto {
   @IsString({ message: 'Должке быть строкой' })
-  imgpath: string
+  imgpath: string;
 }
 
 export class imgpathDtoValid extends imgpathDto {
-  messages: string[]
+  messages: string[];
 }

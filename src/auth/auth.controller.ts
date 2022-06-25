@@ -10,12 +10,12 @@ import {
   Session,
   UseGuards,
   UsePipes,
-} from '@nestjs/common'
-import { MyRequest, MyResponse } from 'src/types/response'
-import { AuthService } from './auth.service'
-import { LoginDtoValid } from './dto/login.dto'
-import { RegistrationDtoValid } from './dto/registration.dto'
-import { AuthGuard } from './guards/auth.guard'
+} from '@nestjs/common';
+import { MyRequest, MyResponse } from 'src/types/response';
+import { AuthService } from './auth.service';
+import { LoginDtoValid } from './dto/login.dto';
+import { RegistrationDtoValid } from './dto/registration.dto';
+import { AuthGuard } from './guards/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -30,7 +30,7 @@ export class AuthController {
       messages: req.flash('info'),
       css: ['registration'],
       scripts: ['validation'],
-    }
+    };
   }
 
   @Post('/registration')
@@ -47,9 +47,9 @@ export class AuthController {
       session,
       req,
       res
-    )
+    );
 
-    return user
+    return user;
   }
 
   @Get('/login')
@@ -61,12 +61,12 @@ export class AuthController {
       messages: req.flash('messages'),
       css: ['registration'],
       scripts: ['validation'],
-    }
+    };
   }
   @Get('/logout')
   @Redirect('/')
   async logout(@Session() session: Record<string, any>) {
-    await this.authService.logout(session)
+    await this.authService.logout(session);
   }
 
   @Post('/login')
@@ -77,11 +77,11 @@ export class AuthController {
     @Req() req: MyRequest,
     @Res() res: MyResponse
   ) {
-    const user = await this.authService.login(authLogin, req)
-    if (!user?.name) return res.redirect('/auth/login')
-    console.log(user)
-    session.isAuth = true
-    session.user = user
-    session.save(() => res.redirect('/'))
+    const user = await this.authService.login(authLogin, req);
+    if (!user?.name) return res.redirect('/auth/login');
+    console.log(user);
+    session.isAuth = true;
+    session.user = user;
+    session.save(() => res.redirect('/'));
   }
 }

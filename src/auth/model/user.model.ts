@@ -1,5 +1,5 @@
-import { ISession } from 'connect-typeorm'
-import PostModel from 'src/posts/model/post'
+import { ISession } from 'connect-typeorm';
+import PostModel from 'src/posts/model/post';
 import {
   Column,
   CreateDateColumn,
@@ -9,33 +9,33 @@ import {
   PrimaryColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm'
+} from 'typeorm';
 
 @Entity()
 export class Users {
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
 
   @Column({
     length: 50,
     nullable: false,
   })
-  name: string
+  name: string;
 
   @Column({
     nullable: false,
     unique: true,
     length: 50,
   })
-  email: string
+  email: string;
 
   @Column({
     select: false,
     nullable: true,
     length: 100,
   })
-  password: string
+  password: string;
 
   @OneToMany(() => PostModel, (post) => post.user, { cascade: true })
-  posts: PostModel[]
+  posts: PostModel[];
 }

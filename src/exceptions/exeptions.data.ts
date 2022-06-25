@@ -1,5 +1,5 @@
 export interface ExceptionsDataInterface {
-  [key: string]: { page: string; data: { [key: string]: any } }
+  [key: string]: { page: string; data: { [key: string]: any } };
 }
 
 export const ExceptionsData: ExceptionsDataInterface = {
@@ -7,4 +7,4 @@ export const ExceptionsData: ExceptionsDataInterface = {
     page: 'pages/Forbidden/Forbidden.hbs',
     data: { css: ['Forbidden'], login: true },
   },
-}
+};

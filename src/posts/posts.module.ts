@@ -1,11 +1,11 @@
-import { Module } from '@nestjs/common'
-import { PostsService } from './posts.service'
-import { PostsController } from './posts.controller'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import PostModel from './model/post'
-import { MulterModule } from '@nestjs/platform-express'
-import { Users } from 'src/auth/model/user.model'
-import { AuthModule } from 'src/auth/auth.module'
+import { Module } from '@nestjs/common';
+import { PostsService } from './posts.service';
+import { PostsController } from './posts.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import PostModel from './model/post';
+import { MulterModule } from '@nestjs/platform-express';
+import { Users } from 'src/auth/model/user.model';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   providers: [PostsService],
