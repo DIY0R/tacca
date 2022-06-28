@@ -10,7 +10,8 @@ import PostModel from './model/post';
 @Injectable()
 export class PostsService {
   constructor(
-    @InjectRepository(Users) private repositoryUsers: Repository<Users>,
+    @InjectRepository(Users)
+    private readonly repositoryUsers: Repository<Users>,
     @InjectRepository(PostModel) private repositoryPost: Repository<PostModel>
   ) {}
 
