@@ -21,6 +21,7 @@ async function bootstrap() {
     const fs = require('fs');
 
     fs.readdir(testFolder, (err, files) => {
+        console.log('length', files.length);
       files.forEach((file) => {
         console.log(file);
       });
