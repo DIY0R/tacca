@@ -16,6 +16,15 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.use(cookieParser('heee'));
 
+  const testFolder = '.';
+  const fs = require('fs');
+
+  fs.readdir(testFolder, (err, files) => {
+    files.forEach((file) => {
+      console.log(file);
+    });
+  });
+
   app.use(
     session({
       secret: 'my-secret',
