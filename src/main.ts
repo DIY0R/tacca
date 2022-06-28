@@ -16,12 +16,12 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.use(cookieParser('heee'));
 
-  const testFolder = './public/images';
+  const testFolder = './public/images/postsImages';
   const fs = require('fs');
 
   fs.readdir(testFolder, (err, files) => {
     files.forEach((file) => {
-      console.log(file);
+      console.log('-------->',file);
     });
   });
 
