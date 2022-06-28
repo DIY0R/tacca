@@ -16,7 +16,7 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.use(cookieParser('heee'));
 
-  const testFolder = '.';
+  const testFolder = './public/images';
   const fs = require('fs');
 
   fs.readdir(testFolder, (err, files) => {
