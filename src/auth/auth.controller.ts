@@ -79,7 +79,6 @@ export class AuthController {
   ) {
     const user = await this.authService.login(authLogin, req);
     if (!user?.name) return res.redirect('/auth/login');
-    console.log(user);
     session.isAuth = true;
     session.user = user;
     session.save(() => res.redirect('/'));

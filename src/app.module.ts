@@ -13,6 +13,7 @@ import { DatabaseConfig } from './database/DataBase';
 import { AuthModule } from './auth/auth.module';
 import { AuthCheckMiddleware } from './middlewares/auth.middleware';
 import { PostsModule } from './posts/posts.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -21,17 +22,18 @@ import { PostsModule } from './posts/posts.module';
       entities: [Session],
       autoLoadEntities: true,
       timezone: '+05:00',
-      ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
-      logging: false,
+      // ssl: true,
+      // extra: {
+      //   ssl: {
+      //     rejectUnauthorized: false,
+      //   },
+      // },
+      // logging: false,
     }),
     ScheduleModule.forRoot(),
     AuthModule,
     PostsModule,
+    ProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

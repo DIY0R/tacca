@@ -34,8 +34,8 @@ export class AuthService {
     );
     if (!passwordEquals)
       return req.flash('messages', ['вы не прошли авторизацию']);
-
-    return candidate;
+    const { password, ...user } = candidate;
+    return user;
   }
 
   private async getUser(loginDto: LoginDtoValid) {

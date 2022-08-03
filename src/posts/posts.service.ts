@@ -20,8 +20,17 @@ export class PostsService {
       .createQueryBuilder('user')
       .where('user.id = :id', { id })
       .leftJoinAndSelect('user.posts', 'posts')
-      .orderBy('posts.created_at', 'ASC')
+      .orderBy('posts.created_at', 'DESC')
       .getOne();
+
+    return user;
+  }
+  async deletePost(idPost: number, idUser: number) {
+    const user = await this.repositoryPost
+      .createQueryBuilder('post')
+      .where('post.id =:id', { id: idPost })
+      .innerJoin(Users, 'users', 'post.userId  = ' + idUser)
+      .getRawOne();
 
     return user;
   }
@@ -44,10 +53,13 @@ export class PostsService {
 
     let newPost: PostModel = new PostModel();
     const { teg, text, title } = postDto;
-    newPost.imgName = img.filename;
-    newPost.tegs = teg.join(',');
-    newPost.title = title;
-    newPost.text = text;
+    Object.assign(newPost, {
+      imgName: img.filename,
+      tegs: teg.join(','),
+      title,
+      text,
+    });
+
     currentUser.posts.push(newPost);
     await this.repositoryUsers.save(currentUser);
     return { name: 'hello' };

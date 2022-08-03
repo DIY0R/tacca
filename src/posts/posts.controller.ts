@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -8,6 +9,7 @@ import {
   Render,
   Req,
   Res,
+  Session,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -81,7 +83,15 @@ export class PostsController {
     );
     return { name: 'hello' };
   }
-
+  @Delete('delete/:idPost')
+  async deletePost(
+    @Param('idPost') idPost: string,
+    @Session() session: Record<string, any>
+  ) {
+    console.log('user->>', session.user.id);
+    const posts = await this.postsService.deletePost(+idPost, +session.user.id);
+    return { posts };
+  }
   @Get('/postImages/:imgpath')
   seeUploadedFile(@Param('imgpath') image: imgpathDtoValid, @Res() res) {
     const file = createReadStream(

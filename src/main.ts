@@ -15,15 +15,18 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.use(cookieParser('heee'));
+  // app.use((req, res, next) => {
+  //   const testFolder = './public/images/postsImages';
+  //   const fs = require('fs');
 
-  const testFolder = '.';
-  const fs = require('fs');
-
-  fs.readdir(testFolder, (err, files) => {
-    files.forEach((file) => {
-      console.log(file);
-    });
-  });
+  //   fs.readdir(testFolder, (err, files) => {
+  //     console.log('length', files.length);
+  //     files.forEach((file) => {
+  //       console.log(file);
+  //     });
+  //   });
+  //   next();
+  // });
 
   app.use(
     session({

@@ -4,23 +4,26 @@
         <img src="https://www.un.org/sites/un2.un.org/files/user.png" alt="users" class="user-logo">
 
         <a href="#">{{name}}</a>
-    </span> 
+    </span>
     <span><a href="/posts/addPost">Добавить пост</a></span>
 </div>{{!-- n --}}
 
 {{#each posts}}
+
+
 
 <div class="content-article ">
 
     <div class="info-user">
 
         <span class="date-post">сегодня в 11:41</span>
+        <input class="delete-post" type="submit" idPost={{this.id}} value="x"/>
     </div>
     <div class="subject">
         <a href="#">
             <h3>Hyundai займётся выпуском шагающих машин</h3>
         </a>
-    
+
     </div>
     <div class="tegs">
         <span class="tegs">
@@ -32,7 +35,7 @@
         </span>{{!-- n --}}
 
     </div>
-    <div class="photo-post"><img src="https://tacca.herokuapp.com/posts/postImages/{{this.imgName}}" alt="photo subject">
+    <div class="photo-post"><img src="http://localhost:5000/posts/postImages/{{this.imgName}}" alt="photo subject">
     </div>
     <div class="short-information">
         <span class="text">{{this.text}}</span>
@@ -49,6 +52,35 @@
         <i class="bi bi-chat-fill icon-post">72</i>
 
     </div>
+
 </div>{{!-- n --}}
 
 {{/each}}
+
+
+
+<script>
+    const btnDell = document.querySelectorAll('.delete-post')
+    btnDell.forEach((element) => {
+
+        element.addEventListener("click", function (event) {
+             event.preventDefault();
+          
+            // сериализуем данные в json
+          
+            let request = new XMLHttpRequest();
+
+             request.open("DELETE", "/posts/delete/"+event.target.getAttribute('idpost'), true);   
+             request.setRequestHeader("Content-Type", "application/json");
+             request.addEventListener("load", function () {
+                 let receivedUser = JSON.parse(request.response);
+                 console.log(receivedUser);
+             });
+           request.send(); 
+         });
+    })
+
+
+
+    
+</script>
