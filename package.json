@@ -30,7 +30,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "connect-flash": "^0.1.1",
-    "connect-typeorm": "^1.1.4",
+    "connect-typeorm": "^2.0.0",
     "cookie-parser": "^1.4.6",
     "express-handlebars": "^6.0.5",
     "hbs": "^4.2.0",
