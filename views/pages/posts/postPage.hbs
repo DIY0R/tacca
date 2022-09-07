@@ -16,7 +16,7 @@
 
     <div class="info-user">
 
-        <span class="date-post">сегодня в 11:41</span>
+        <span class="date-post">{{this.created_at}}</span>
         <input class="delete-post" type="submit" idPost={{this.id}} value="x"/>
     </div>
     <div class="subject">
@@ -52,7 +52,16 @@
         <i class="bi bi-chat-fill icon-post">72</i>
 
     </div>
-
+ <div>
+    <input type="text" placeholder="comment"> 
+    <input type="submit">
+ </div>
+ <div class="comments">
+    <div class="user-text">
+        <span><i class="bi bi-person-circle"> DIY0R </i> <span class="date-post">25.08.2022 в 22:07</span></span>
+        <div>hello</div>
+    </div>
+ </div>
 </div>{{!-- n --}}
 
 {{/each}}
@@ -65,8 +74,7 @@
 
         element.addEventListener("click", function (event) {
              event.preventDefault();
-          
-            // сериализуем данные в json
+    
           
             let request = new XMLHttpRequest();
 
@@ -80,7 +88,4 @@
          });
     })
 
-
-
-    
 </script>

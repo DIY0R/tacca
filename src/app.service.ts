@@ -1,17 +1,16 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
-import * as fs from 'fs';
-import { join } from 'path';
+
+import { PostsService } from './posts/posts.service';
+import { access } from 'node:fs/promises';
+import { createReadStream } from 'node:fs';
+import { join } from 'node:path';
 
 @Injectable()
 export class AppService {
   private quote = '';
-  private arr = [
-    '«Чем умнее человек, тем легче он признает себя дураком». ...',
-    '«Никогда не ошибается тот, кто ничего не делает». ...',
-    '«Менее всего просты люди, желающие казаться простыми». ...',
-  ];
-  constructor() {}
+  private arr = [];
+  constructor(private postsService: PostsService) {}
 
   getHello(): string {
     return 'Hello World!';
@@ -23,17 +22,29 @@ export class AppService {
 
     this.quote = this.arr[randomIndex];
   }
-  private testFor(ms) {
-    return new Promise((res) => {
-      setTimeout(() => {
-        for (let i = 0; i < 1_000_00; i++) {
-          console.log('stack');
-        }
-        res(true);
-      }, ms);
-    });
-  }
+
   async nav() {
-    return { quote: this.quote, scripts: ['app'] };
+    const posts = await this.postsService.allPosts();
+    return { quote: this.quote, scripts: ['app'], posts };
+  }
+
+  private async accessFile(path: string): Promise<void | object> {
+    try {
+      const result = await access(path);
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async staticImages(image) {
+    const homeUrl = process.cwd() + '/public/images/postsImages/';
+
+    const path = homeUrl + image;
+    const result = await this.accessFile(path);
+    const img = !!result ? 'black-line-1755.jpg' : image;
+    const file = createReadStream(join(homeUrl + img));
+
+    return file;
   }
 }

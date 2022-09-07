@@ -1,0 +1,62 @@
+<div>
+    <div class="content-article">
+        <div class="info-user">
+            <span class="user">
+                <img src="https://www.un.org/sites/un2.un.org/files/user.png" alt="users" class="user-logo">
+                <a href="#">{{post.user.name}}</a>
+            </span>
+            <span class="date-post">сегодня в 11:41</span>
+        </div>
+        <div class="subject">
+
+            <h3>{{post.title}}</h3>
+
+
+        </div>
+        <div class="tegs">
+
+            {{#each (stringToArray post.tegs)}}
+            <span class="tegs">
+                <a href="#">{{this}}</a>
+            </span>
+            {{/each}}
+
+        </div>
+        <div class="photo-post"><img src="http://localhost:5000/postImages/{{post.imgName}}" alt="photo subject"></div>
+        <div class="short-information">
+            <span class="text">{{post.text}}</span>
+        </div>
+
+        <div class="actions-icons">
+            <i class="bi bi-star-fill icon-post">+5</i>
+            <i class="bi bi-eye-fill icon-post">568</i>
+            <i class="bi bi-bookmark-plus-fill icon-post">8</i>
+            <i class="bi bi-chat-fill icon-post comment-icon">72</i>
+        </div><br />
+
+        <div class="action-input"></div>
+    </div>{{!-- n --}}
+    {{#if (lengthError errors ) }}
+    <div class="content-article">
+        {{#each errors}}
+
+        <p class="text-danger"> {{this}}</p>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    <div class="content-article">
+        {{#each post.comment}}
+        <div class="user">
+            <a href="#"><i class="bi bi-person-circle"> DIY0R</i></a>
+            {{this.text}}
+        </div>
+        {{/each}}
+
+    </div>
+
+</div>
+
+<script>
+    const idPost = "{{this.post.id}}"
+</script>

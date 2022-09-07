@@ -37,7 +37,7 @@ export class PostsController {
   @Render('pages/posts/postPage.hbs')
   async myPosts(@Res() res: MyResponse) {
     const user: any = await this.postsService.getPosts(res.locals.user.id);
-    console.log(user.name);
+    console.log(user.posts);
     return {
       login: true,
       posts: user.posts,
@@ -92,6 +92,7 @@ export class PostsController {
     const posts = await this.postsService.deletePost(+idPost, +session.user.id);
     return { posts };
   }
+
   @Get('/postImages/:imgpath')
   seeUploadedFile(@Param('imgpath') image: imgpathDtoValid, @Res() res) {
     const file = createReadStream(

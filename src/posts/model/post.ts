@@ -5,14 +5,17 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import Comment from '../comment/models/comment';
 
 @Entity()
 export default class Post {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column({
     length: 50,
     nullable: false,
@@ -27,13 +30,20 @@ export default class Post {
   @Column({ nullable: false, length: 50 })
   imgName: string;
 
-  @Column('text')
+  @Column({
+    nullable: false,
+    type: 'text',
+  })
   text: string;
 
   @ManyToOne(() => Users, (user) => user.posts, {
     onDelete: 'CASCADE',
   })
   user: Users;
+
+  @OneToMany(() => Comment, (comment) => comment.post, { cascade: true })
+  comment: Comment[];
+
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',

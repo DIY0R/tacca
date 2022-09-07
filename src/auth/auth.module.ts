@@ -10,9 +10,10 @@ import { Users } from './model/user.model';
   controllers: [AuthController],
   imports: [
     TypeOrmModule.forFeature([Session, Users]),
-    ScheduleModule.forRoot(),
+    // ScheduleModule.forRoot(),
   ],
   providers: [AuthService],
   exports: [TypeOrmModule],
 })
 export class AuthModule {}
+

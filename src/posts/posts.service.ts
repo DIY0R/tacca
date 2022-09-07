@@ -12,7 +12,9 @@ export class PostsService {
   constructor(
     @InjectRepository(Users)
     private readonly repositoryUsers: Repository<Users>,
-    @InjectRepository(PostModel) private repositoryPost: Repository<PostModel>
+
+    @InjectRepository(PostModel)
+    private readonly repositoryPost: Repository<PostModel>
   ) {}
 
   async getPosts(id: number) {
@@ -25,6 +27,26 @@ export class PostsService {
 
     return user;
   }
+  async getOnePost(id: number) {
+    const post = await this.repositoryPost
+      .createQueryBuilder('post')
+      .where('post.id = :id', { id })
+      .innerJoinAndSelect('post.user', 'user')
+      .leftJoinAndSelect('post.comment', 'comment')
+      .orderBy('comment', 'DESC')
+      .getOne();
+    console.log(JSON.stringify(post));
+    return post;
+  }
+  async allPosts() {
+    const posts = await this.repositoryPost
+      .createQueryBuilder('post')
+      .innerJoinAndSelect('post.user', 'user')
+      .orderBy('post.created_at', 'DESC')
+      .getMany();
+
+    return posts;
+  }
   async deletePost(idPost: number, idUser: number) {
     const user = await this.repositoryPost
       .createQueryBuilder('post')
@@ -32,7 +54,7 @@ export class PostsService {
       .innerJoin(Users, 'users', 'post.userId  = ' + idUser)
       .getRawOne();
 
-    return user;
+    return { hello: 'hello' };
   }
 
   async addPost(

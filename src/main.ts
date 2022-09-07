@@ -9,26 +9,13 @@ import * as flash from 'connect-flash';
 import * as cookieParser from 'cookie-parser';
 import { ValidationPipeGlobal } from './pipes/validations.pipe';
 import { HttpExceptionGlobal } from './exceptions/HttpExceptionGlobal';
+import { helpers } from './hbs-helpers/helper';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  console.log('---------------', process.env.HOST);
+
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.use(cookieParser('heee'));
-
-  app.use((req, res, next) => {
-    const testFolder = './public/images/postsImages';
-    const fs = require('fs');
-
-    fs.readdir(testFolder, (err, files) => {
-      console.log('length', files.length);
-      files.forEach((file) => {
-        console.log(file);
-      });
-    });
-    next();
-  });
-
   app.use(
     session({
       secret: 'my-secret',
@@ -47,11 +34,7 @@ async function bootstrap() {
     hbs.engine({
       defaultLayout: 'app',
       extname: '.hbs',
-      helpers: {
-        lengthChek: function (value) {
-          return value > 10 ? 'true' : 'false';
-        },
-      },
+      helpers,
     })
   );
   app.setViewEngine('hbs');
@@ -59,4 +42,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipeGlobal());
   await app.listen(process.env.PORT || 5000);
 }
-bootstrap();
+
+try {
+  bootstrap();
+} catch (error) {
+  console.log(error);
+}

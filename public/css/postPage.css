@@ -7,3 +7,21 @@
 .delete-post{
     float: right;
 }
+.user{
+    overflow-x:hidden;
+}
+
+.btn-purple{
+    background-color: #483750;
+    color: white;
+    
+}
+
+.btn-purple:hover{
+    color: white;
+    box-shadow:   1px 1px 5px 2px #483750;
+}
+p{
+        margin-top: 0;
+        margin-bottom: 0;
+}

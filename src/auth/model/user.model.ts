@@ -1,4 +1,5 @@
 import { ISession } from 'connect-typeorm';
+import Comment from 'src/posts/comment/models/comment';
 import PostModel from 'src/posts/model/post';
 import {
   Column,
@@ -38,4 +39,7 @@ export class Users {
 
   @OneToMany(() => PostModel, (post) => post.user, { cascade: true })
   posts: PostModel[];
+
+  @OneToMany(() => Comment, (comment) => comment.user, { cascade: true })
+  comment: Comment[];
 }

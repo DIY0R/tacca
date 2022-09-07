@@ -12,6 +12,7 @@ export type MyResponse = Omit<express.Response, 'locals'> & {
 export type MyRequest = Omit<express.Response, 'locals'> & {
   session: {
     isAuth: boolean;
+    user: { id: number; email: string; name: string };
   };
   flash: (token: string, args?: any) => string[];
 };
