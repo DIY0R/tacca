@@ -21,7 +21,7 @@
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.1.1",
     "@nestjs/platform-express": "^8.1.1",
-    "@nestjs/schedule": "^2.2.0",
+    "@nestjs/schedule": "^4.1.0",
     "@nestjs/typeorm": "^8.1.4",
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.3",
