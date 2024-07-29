@@ -1,12 +1,12 @@
 {
-  "name": "takka",
+  "name": "tacca",
   "private": true,
   "version": "1.0.0",
   "engines": {
-    "node": "16.x",
-    "npm": "v6.x"
+    "node": "18.x",
+    "npm": "v8.x"
   },
-  "description": "Nest TypeScript starter repository",
+  "description": "SSR in Nest.js solves the problems that arise during the development of such websites",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
