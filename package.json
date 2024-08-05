@@ -38,7 +38,7 @@
     "hbs": "^4.2.0",
     "node-cron": "^3.0.2",
     "pg": "^8.12.0",
-    "reflect-metadata": "^0.1.13",
+    "reflect-metadata": "^0.1.14",
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0",
     "typeorm": "^0.3.6"
